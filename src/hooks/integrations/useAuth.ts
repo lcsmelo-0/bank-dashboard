@@ -3,12 +3,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
+import { Routes } from "@/constants/routes";
 import { COOKIE_TOKEN } from "@/constants/tokens";
-
-interface LoginData {
-  username: string;
-  password: string;
-}
+import { LoginData } from "@/interfaces/login";
 
 export const useAuth = () => {
   const router = useRouter();
@@ -24,14 +21,14 @@ export const useAuth = () => {
     onSuccess: (data) => {
       Cookies.set(COOKIE_TOKEN, data.access_token, { expires: 1 });
 
-      router.push("/dashboard");
+      router.push(Routes.DASHBOARD);
     },
     onError: () => {},
   });
 
   const logout = () => {
     Cookies.remove(COOKIE_TOKEN);
-    alert("Logout realizado!");
+    router.push(Routes.LOGIN);
   };
 
   return { loginMutation, logout };

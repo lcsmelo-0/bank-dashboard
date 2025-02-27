@@ -1,29 +1,25 @@
 import { NextPage } from "next";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import { useAuth } from "@/hooks/useAuth";
-import {
-  Button,
-  Card,
-  Container,
-  ErrorMessage,
-  EyeIcon,
-  Input,
-  PasswordInput,
-  PasswordWrapper,
-  Title,
-} from "@/styles/LoginStyles";
+import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
+import { Card } from "@/components/Layout/Card";
+import { ErrorMessage } from "@/components/Typography/ErrorMessage";
+import { Title } from "@/components/Typography/Title";
+import { useAuth } from "@/hooks/integrations/useAuth";
+import { LoginData } from "@/interfaces/login";
+import { Container } from "@/styles/LoginStyles";
 
 const LoginPage: NextPage = () => {
   const { loginMutation } = useAuth();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    loginMutation.mutate({ username, password });
+    const payload = { username, password } as LoginData;
+
+    loginMutation.mutate(payload);
   };
 
   return (
@@ -35,22 +31,17 @@ const LoginPage: NextPage = () => {
             type="text"
             placeholder="Usuário"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={setUsername}
           />
-          <PasswordWrapper>
-            <PasswordInput
-              type={showPassword ? "text" : "password"}
-              placeholder="Senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <EyeIcon onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </EyeIcon>
-          </PasswordWrapper>
-          {loginMutation.isError && (
-            <ErrorMessage>Usuário ou senha incorretos.</ErrorMessage>
-          )}
+          <Input
+            type={"password"}
+            placeholder="Senha"
+            value={password}
+            onChange={setPassword}
+          />
+          <ErrorMessage visible={loginMutation.isError}>
+            Usuário ou senha incorretos.
+          </ErrorMessage>
           <Button type="submit">
             {loginMutation.isPending ? "Entrando..." : "Entrar"}
           </Button>

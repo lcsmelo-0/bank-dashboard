@@ -2,13 +2,15 @@ import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
 import { useAuthStatus } from "@/hooks/useAuthStatus";
+import { SidebarMenu } from "@/components/Sidebar";
 import { Container } from "./styles";
 
 type Props = {
   children: React.ReactNode;
+  position?: "center" | "left";
 };
 
-export const PageContainer: FC<Props> = ({ children }) => {
+export const PageContainer: FC<Props> = ({ children, position = "left" }) => {
   const isAuthenticated = useAuthStatus();
   const router = useRouter();
 
@@ -18,5 +20,10 @@ export const PageContainer: FC<Props> = ({ children }) => {
     }
   }, [isAuthenticated]);
 
-  return <Container>{children}</Container>;
+  return (
+    <Container $position={position}>
+      <SidebarMenu />
+      {children}
+    </Container>
+  );
 };
