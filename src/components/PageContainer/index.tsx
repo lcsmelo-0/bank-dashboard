@@ -1,6 +1,8 @@
-import { useAuthStatus } from "@/hooks/useAuthStatus";
-import { FC } from "react";
 import { useRouter } from "next/router";
+import { FC, useEffect } from "react";
+
+import { useAuthStatus } from "@/hooks/useAuthStatus";
+import { Container } from "./styles";
 
 type Props = {
   children: React.ReactNode;
@@ -10,13 +12,11 @@ export const PageContainer: FC<Props> = ({ children }) => {
   const isAuthenticated = useAuthStatus();
   const router = useRouter();
 
-  if (!isAuthenticated) {
-    if (typeof window !== "undefined") {
+  useEffect(() => {
+    if (!isAuthenticated) {
       router.push("/login");
     }
+  }, [isAuthenticated]);
 
-    return null;
-  }
-
-  return <main>{children}</main>;
+  return <Container>{children}</Container>;
 };

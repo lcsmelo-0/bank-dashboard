@@ -3,6 +3,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
+import { COOKIE_TOKEN } from "@/constants/tokens";
+
 interface LoginData {
   username: string;
   password: string;
@@ -20,16 +22,15 @@ export const useAuth = () => {
       return data;
     },
     onSuccess: (data) => {
-      Cookies.set("bank-dashboard-token", data.access_token, { expires: 1 });
+      Cookies.set(COOKIE_TOKEN, data.access_token, { expires: 1 });
 
-      console.log("entrou");
       router.push("/dashboard");
     },
     onError: () => {},
   });
 
   const logout = () => {
-    Cookies.remove("bank-dashboard-token");
+    Cookies.remove(COOKIE_TOKEN);
     alert("Logout realizado!");
   };
 
