@@ -8,10 +8,11 @@ import { LoginData } from "@/interfaces";
 
 export const useAuth = () => {
   const router = useRouter();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
   const loginMutation = useMutation({
     mutationFn: async ({ username, password }: LoginData) => {
-      const { data } = await axios.post("http://localhost:3000/auth/login", {
+      const { data } = await axios.post(`${API_URL}/auth/login`, {
         username,
         password,
       });

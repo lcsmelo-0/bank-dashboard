@@ -6,6 +6,7 @@ import {
   FaPlus,
   FaSignOutAlt,
   FaTimes,
+  FaTrash,
   FaUser,
 } from "react-icons/fa";
 
@@ -60,6 +61,15 @@ export const SidebarMenu: FC = () => {
             <FaPlus />
           </Icon>
           Criar conta
+        </MenuItem>
+        <MenuItem
+          $selected={checkIfSelected(Routes.RESET)}
+          onClick={() => router.push(Routes.RESET)}
+        >
+          <Icon>
+            <FaTrash />
+          </Icon>
+          Resetar banco
         </MenuItem>
         <LogoutButton onClick={handleLogout}>
           <Icon>

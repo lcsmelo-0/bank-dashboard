@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const CustomButton = styled.button`
+export const CustomButton = styled.button<{ $bg?: string }>`
   width: 100%;
-  background: #6e8efb;
+  background: ${({ $bg }) => $bg || " #6e8efb"};
   color: white;
   border: none;
   padding: 12px;

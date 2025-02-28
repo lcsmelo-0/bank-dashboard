@@ -7,6 +7,7 @@ import {
   WithdrawAmountData,
 } from "@/interfaces";
 import axiosInstance from "@/libs/axios";
+import { useAuth } from "./useAuth";
 
 const showToast = (type: "success" | "error", message: string) => {
   toast[type](message, {
@@ -24,6 +25,7 @@ const showToast = (type: "success" | "error", message: string) => {
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export const useAccounts = () => {
+  const { logout } = useAuth();
   const createAccountMutation = useMutation({
     mutationFn: async (payload: CreateAccountData) => {
       const { data } = await axiosInstance.post(
@@ -83,11 +85,25 @@ export const useAccounts = () => {
       showToast("error", "Falha ao realizar o saque.");
     },
   });
+  const resetMutation = useMutation({
+    mutationFn: async () => {
+      const { data } = await axiosInstance.post(`${API_URL}/accounts/reset`);
+      return data;
+    },
+    onSuccess: () => {
+      logout();
+      showToast("success", "Reset realizado com sucesso");
+    },
+    onError: () => {
+      showToast("error", "Falha ao resetar o banco.");
+    },
+  });
 
   return {
     createAccountMutation,
     getBalanceMutation,
     transferBalanceMutation,
     withdrawMutation,
+    resetMutation,
   };
 };

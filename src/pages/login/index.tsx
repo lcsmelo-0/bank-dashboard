@@ -11,10 +11,9 @@ const LoginPage: NextPage = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     const payload = { username, password } as LoginData;
-
+    console.log("asdad");
     loginMutation.mutate(payload);
   };
 
@@ -22,26 +21,24 @@ const LoginPage: NextPage = () => {
     <Container>
       <Card>
         <Title>Login</Title>
-        <form onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            placeholder="Usuário"
-            value={username}
-            onChange={setUsername}
-          />
-          <Input
-            type={"password"}
-            placeholder="Senha"
-            value={password}
-            onChange={setPassword}
-          />
-          <ErrorMessage visible={loginMutation.isError}>
-            Usuário ou senha incorretos.
-          </ErrorMessage>
-          <Button type="submit">
-            {loginMutation.isPending ? "Entrando..." : "Entrar"}
-          </Button>
-        </form>
+        <Input
+          type="text"
+          placeholder="Usuário"
+          value={username}
+          onChange={setUsername}
+        />
+        <Input
+          type={"password"}
+          placeholder="Senha"
+          value={password}
+          onChange={setPassword}
+        />
+        <ErrorMessage visible={loginMutation.isError}>
+          Usuário ou senha incorretos.
+        </ErrorMessage>
+        <Button onClick={handleSubmit}>
+          {loginMutation.isPending ? "Entrando..." : "Entrar"}
+        </Button>
       </Card>
     </Container>
   );
