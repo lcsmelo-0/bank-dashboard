@@ -12,3 +12,9 @@ export interface TransferAmountData {
   amount: number;
   destination: string;
 }
+
+export interface WithdrawAmountData {
+  type: AccountType.WITHDRAW;
+  origin: string;
+  amount: number;
+}

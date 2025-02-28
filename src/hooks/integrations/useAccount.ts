@@ -1,86 +1,93 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { CreateAccountData, TransferAmountData } from "@/interfaces";
+import {
+  CreateAccountData,
+  TransferAmountData,
+  WithdrawAmountData,
+} from "@/interfaces";
 import axiosInstance from "@/libs/axios";
+
+const showToast = (type: "success" | "error", message: string) => {
+  toast[type](message, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+};
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export const useAccounts = () => {
   const createAccountMutation = useMutation({
     mutationFn: async (payload: CreateAccountData) => {
       const { data } = await axiosInstance.post(
-        "http://localhost:3000/accounts/event",
+        `${API_URL}/accounts/event`,
         payload
       );
       return data;
     },
     onSuccess: () => {
-      toast.success("Conta criada com sucesso", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      showToast("success", "Conta criada com sucesso");
     },
     onError: () => {
-      toast.error("Erro ao criar a conta.", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      showToast("error", "Erro ao criar a conta.");
     },
   });
 
   const getBalanceMutation = useMutation({
     mutationFn: async (accountId: string) => {
       const { data } = await axiosInstance.get(
-        `http://localhost:3000/accounts/balance?account_id=${accountId}`
+        `${API_URL}/accounts/balance?account_id=${accountId}`
       );
       return data;
+    },
+    onError: () => {
+      showToast("error", "Erro ao buscar saldo.");
     },
   });
 
   const transferBalanceMutation = useMutation({
     mutationFn: async (payload: TransferAmountData) => {
       const { data } = await axiosInstance.post(
-        `http://localhost:3000/accounts/event`,
+        `${API_URL}/accounts/event`,
         payload
       );
       return data;
     },
     onSuccess: () => {
-      toast.success("Transferência realizada com sucesso", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      showToast("success", "Transferência realizada com sucesso");
     },
     onError: () => {
-      toast.error("Falha ao realizar a transferência.", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      showToast("error", "Falha ao realizar a transferência.");
     },
   });
 
-  return { createAccountMutation, getBalanceMutation, transferBalanceMutation };
+  const withdrawMutation = useMutation({
+    mutationFn: async (payload: WithdrawAmountData) => {
+      const { data } = await axiosInstance.post(
+        `${API_URL}/accounts/event`,
+        payload
+      );
+      return data;
+    },
+    onSuccess: () => {
+      showToast("success", "Saque realizado com sucesso");
+    },
+    onError: () => {
+      showToast("error", "Falha ao realizar o saque.");
+    },
+  });
+
+  return {
+    createAccountMutation,
+    getBalanceMutation,
+    transferBalanceMutation,
+    withdrawMutation,
+  };
 };

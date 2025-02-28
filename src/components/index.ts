@@ -1,6 +1,7 @@
 export * from "./Button";
 export * from "./Input";
 export * from "./Layout/Card";
+export * from "./Layout/Tabs";
 export * from "./PageContainer";
 export * from "./Select";
 export * from "./Sidebar";

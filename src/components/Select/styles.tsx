@@ -16,4 +16,7 @@ export const CustomSelect = styled.select`
   font-size: 16px;
   background-color: #f9f9f9;
   color: #333;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 `;

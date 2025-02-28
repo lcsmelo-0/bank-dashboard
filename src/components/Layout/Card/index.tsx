@@ -4,8 +4,9 @@ import { Container } from "./styles";
 
 type Props = {
   children: React.ReactNode;
+  maxWidth?: string;
 };
 
-export const Card: FC<Props> = ({ children }) => {
-  return <Container>{children}</Container>;
+export const Card: FC<Props> = ({ children, maxWidth }) => {
+  return <Container $maxWidth={maxWidth}>{children}</Container>;
 };
