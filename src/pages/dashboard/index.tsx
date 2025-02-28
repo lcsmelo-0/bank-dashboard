@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { BiTransfer } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 import {
   Button,
@@ -39,8 +40,26 @@ const Dashboard = () => {
     [getBalanceMutation.data]
   );
 
+  const showError = (message: string) => {
+    toast["error"](message, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
   const onTransferAmount = () => {
     if (!transferAmount || !transferAccount) {
+      return;
+    }
+
+    if (convertCurrencyToNumber(transferAmount) > balance) {
+      showError("Saldo insuficiente para realizar a transferência");
       return;
     }
 
@@ -56,6 +75,12 @@ const Dashboard = () => {
 
   const onWithdrawAmount = () => {
     if (!withdrawAmount) {
+      return;
+    }
+
+    if (convertCurrencyToNumber(withdrawAmount) > balance) {
+      showError("Saldo insuficiente para realizar o saque");
+
       return;
     }
 

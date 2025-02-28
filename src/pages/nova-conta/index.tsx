@@ -22,7 +22,7 @@ const NewAccount = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!document || !initialBalance) {
+    if (!document || !convertCurrencyToNumber(initialBalance)) {
       return;
     }
 
