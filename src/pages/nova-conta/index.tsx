@@ -19,9 +19,7 @@ const NewAccount = () => {
   const [document, setDocument] = useCPFField("");
   const [initialBalance, setInitialBalance] = useCurrencyField(0);
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-
+  const handleSubmit = () => {
     if (!document || !convertCurrencyToNumber(initialBalance)) {
       return;
     }
@@ -49,22 +47,20 @@ const NewAccount = () => {
     <PageContainer position="center">
       <Card>
         <Title>Adicionar nova conta</Title>
-        <form onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            placeholder="Usuário"
-            value={document}
-            onChange={setDocument}
-          />
-          <Input
-            type="text"
-            placeholder="Saldo Inicial"
-            value={initialBalance}
-            onChange={setInitialBalance}
-          />
+        <Input
+          type="text"
+          placeholder="Usuário"
+          value={document}
+          onChange={setDocument}
+        />
+        <Input
+          type="text"
+          placeholder="Saldo Inicial"
+          value={initialBalance}
+          onChange={setInitialBalance}
+        />
 
-          <Button type="submit">Cadastrar</Button>
-        </form>
+        <Button onClick={handleSubmit}>Cadastrar</Button>
       </Card>
     </PageContainer>
   );
