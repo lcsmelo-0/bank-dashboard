@@ -5,15 +5,19 @@ import { Input } from "@/components/Input";
 import { Card } from "@/components/Layout/Card";
 import { PageContainer } from "@/components/PageContainer";
 import { Title } from "@/components/Typography/Title";
-import { useAccounts } from "@/hooks/integrations/useAccount";
 import { AccountType } from "@/constants/accounts";
-import { CreateAccountData } from "@/interfaces/accounts";
-import { useCurrencyField } from "@/hooks/useNumberField";
 import { convertCurrencyToNumber } from "@/helpers/convertCurrentToNumber";
-import { useCPFField } from "@/hooks/useCPFField";
 import { removeSpecialCharacters } from "@/helpers/removeSpecialCharacters";
+import { useAccounts } from "@/hooks/integrations/useAccount";
+import { useAppDispatch } from "@/hooks/store";
+import { useCPFField } from "@/hooks/useCPFField";
+import { useCurrencyField } from "@/hooks/useNumberField";
+import { CreateAccountData } from "@/interfaces/accounts";
+import { saveAccount } from "@/store/slices/accounts";
 
 const NewAccount = () => {
+  const dispatch = useAppDispatch();
+
   const { createAccountMutation } = useAccounts();
   const [document, setDocument] = useCPFField("");
   const [initialBalance, setInitialBalance] = useCurrencyField(0);
@@ -38,6 +42,9 @@ const NewAccount = () => {
     if (createAccountMutation.isSuccess) {
       setDocument("");
       setInitialBalance("0");
+
+      createAccountMutation.reset();
+      dispatch(saveAccount(createAccountMutation.data.id));
     }
   }, [createAccountMutation]);
 

@@ -5,3 +5,10 @@ export interface CreateAccountData {
   destination: string;
   amount: number;
 }
+
+export interface TransferAmountData {
+  type: AccountType.TRANSFER;
+  origin: string;
+  amount: number;
+  destination: string;
+}

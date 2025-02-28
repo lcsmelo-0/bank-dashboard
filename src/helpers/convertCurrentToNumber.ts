@@ -1,4 +1,10 @@
-export const convertCurrencyToNumber = (currency: string): number => {
+export const convertCurrencyToNumber = (
+  currency: string | undefined
+): number => {
+  if (!currency) {
+    return 0;
+  }
+
   const formattedCurrency = currency
     .replace("R$", "")
     .replace(".", "")

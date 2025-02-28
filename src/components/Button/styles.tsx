@@ -11,6 +11,7 @@ export const CustomButton = styled.button`
   cursor: pointer;
   margin-top: 10px;
   transition: background 0.3s;
+  font-weight: bold;
 
   &:hover {
     background: #5a75e0;

@@ -1,16 +1,14 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import type { AppProps } from "next/app";
+import { AppProps } from "next/app";
 import Head from "next/head";
-import { useState } from "react";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
-
 import { store } from "@/store/store";
 import "@/styles/globals.css";
 
-const App = ({ Component, pageProps }: AppProps) => {
-  const [queryClient] = useState(() => new QueryClient());
+const queryClient = new QueryClient();
 
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider store={store}>
       <Head>
