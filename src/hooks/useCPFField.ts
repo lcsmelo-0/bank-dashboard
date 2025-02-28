@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { UseFieldHook } from "@/interfaces/fieldsHook";
-import { formatToCPF } from "@/helpers/formatToCPF";
+import { formatToCPF } from "@/helpers";
+import { UseFieldHook } from "@/interfaces";
 
 export const useCPFField = (initialValue: string = ""): UseFieldHook => {
   const [document, setDocument] = useState<string>(initialValue);

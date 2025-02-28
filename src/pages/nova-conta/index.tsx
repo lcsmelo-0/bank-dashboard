@@ -1,18 +1,15 @@
 import { useEffect } from "react";
 
-import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
-import { Card } from "@/components/Layout/Card";
-import { PageContainer } from "@/components/PageContainer";
-import { Title } from "@/components/Typography/Title";
-import { AccountType } from "@/constants/accounts";
-import { convertCurrencyToNumber } from "@/helpers/convertCurrentToNumber";
-import { removeSpecialCharacters } from "@/helpers/removeSpecialCharacters";
-import { useAccounts } from "@/hooks/integrations/useAccount";
-import { useAppDispatch } from "@/hooks/store";
-import { useCPFField } from "@/hooks/useCPFField";
-import { useCurrencyField } from "@/hooks/useNumberField";
-import { CreateAccountData } from "@/interfaces/accounts";
+import { Button, Card, Input, PageContainer, Title } from "@/components";
+import { AccountType } from "@/constants";
+import { convertCurrencyToNumber, removeSpecialCharacters } from "@/helpers";
+import {
+  useAccounts,
+  useAppDispatch,
+  useCPFField,
+  useCurrencyField,
+} from "@/hooks";
+import { CreateAccountData } from "@/interfaces";
 import { saveAccount } from "@/store/slices/accounts";
 
 const NewAccount = () => {

@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { CustomTitle } from "./styles";
 
 type Props = {

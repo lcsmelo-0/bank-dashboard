@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UseFieldHook } from "@/interfaces/fieldsHook";
+import { UseFieldHook } from "@/interfaces";
 
 export const useCurrencyField = (
   initial?: number,

@@ -3,9 +3,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
-import { Routes } from "@/constants/routes";
-import { COOKIE_TOKEN } from "@/constants/tokens";
-import { LoginData } from "@/interfaces/login";
+import { COOKIE_TOKEN, Routes } from "@/constants";
+import { LoginData } from "@/interfaces";
 
 export const useAuth = () => {
   const router = useRouter();

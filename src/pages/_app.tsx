@@ -3,6 +3,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+
 import { store } from "@/store/store";
 import "@/styles/globals.css";
 

@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { Error } from "./styles";
 
 type Props = {

@@ -9,6 +9,8 @@ import {
   FaUser,
 } from "react-icons/fa";
 
+import { Routes } from "@/constants";
+import { useAuth } from "@/hooks";
 import {
   HamburgerButton,
   Icon,
@@ -18,8 +20,6 @@ import {
   UserImage,
   UserProfile,
 } from "./styles";
-import { useAuth } from "@/hooks/integrations/useAuth";
-import { Routes } from "@/constants/routes";
 
 export const SidebarMenu: FC = () => {
   const { logout } = useAuth();

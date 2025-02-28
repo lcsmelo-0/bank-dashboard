@@ -2,22 +2,23 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { BiTransfer } from "react-icons/bi";
 
-import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
-import { Card } from "@/components/Layout/Card";
-import { PageContainer } from "@/components/PageContainer";
-import { Select } from "@/components/Select";
-import { Title } from "@/components/Typography/Title";
-import { AccountType } from "@/constants/accounts";
-import { Routes } from "@/constants/routes";
-import { convertCurrencyToNumber } from "@/helpers/convertCurrentToNumber";
-import { formatToCPF } from "@/helpers/formatToCPF";
-import { formatToReal } from "@/helpers/formatToReal";
-import { removeSpecialCharacters } from "@/helpers/removeSpecialCharacters";
-import { useAccounts } from "@/hooks/integrations/useAccount";
-import { useAppSelector } from "@/hooks/store";
-import { useCurrencyField } from "@/hooks/useNumberField";
-import { TransferAmountData } from "@/interfaces/accounts";
+import {
+  Button,
+  Card,
+  Input,
+  PageContainer,
+  Select,
+  Title,
+} from "@/components";
+import { AccountType, Routes } from "@/constants";
+import {
+  convertCurrencyToNumber,
+  formatToCPF,
+  formatToReal,
+  removeSpecialCharacters,
+} from "@/helpers";
+import { useAccounts, useAppSelector, useCurrencyField } from "@/hooks";
+import { TransferAmountData } from "@/interfaces";
 import { Content, Text, TransferArea } from "@/styles/DashboardStyles";
 
 const Dashboard = () => {

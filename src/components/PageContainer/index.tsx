@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
-import { useAuthStatus } from "@/hooks/useAuthStatus";
-import { SidebarMenu } from "@/components/Sidebar";
+import { SidebarMenu } from "@/components";
+import { useAuthStatus } from "@/hooks";
 import { Container } from "./styles";
 
 type Props = {

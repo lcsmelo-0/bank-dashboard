@@ -1,6 +1,7 @@
-import { COOKIE_TOKEN } from "@/constants/tokens";
 import axios from "axios";
 import Cookies from "js-cookie";
+
+import { COOKIE_TOKEN } from "@/constants";
 
 const axiosInstance = axios.create({
   baseURL: "/api",

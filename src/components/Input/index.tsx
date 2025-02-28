@@ -1,6 +1,7 @@
 import { FC, HTMLInputTypeAttribute, useMemo, useState } from "react";
-import { CustomInput, Wrapper, EyeIcon } from "./styles";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+import { CustomInput, EyeIcon, Wrapper } from "./styles";
 
 type Props = {
   placeholder: string;

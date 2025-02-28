@@ -1,13 +1,9 @@
 import { NextPage } from "next";
 import { useState } from "react";
 
-import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
-import { Card } from "@/components/Layout/Card";
-import { ErrorMessage } from "@/components/Typography/ErrorMessage";
-import { Title } from "@/components/Typography/Title";
-import { useAuth } from "@/hooks/integrations/useAuth";
-import { LoginData } from "@/interfaces/login";
+import { Button, Card, ErrorMessage, Input, Title } from "@/components";
+import { useAuth } from "@/hooks";
+import { LoginData } from "@/interfaces";
 import { Container } from "@/styles/LoginStyles";
 
 const LoginPage: NextPage = () => {
