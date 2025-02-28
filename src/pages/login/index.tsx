@@ -13,7 +13,6 @@ const LoginPage: NextPage = () => {
 
   const handleSubmit = () => {
     const payload = { username, password } as LoginData;
-    console.log("asdad");
     loginMutation.mutate(payload);
   };
 
