@@ -1,40 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Bank Dashboard Simulator
 
-## Getting Started
+Esta é uma aplicação de simulação de conta bancária construída com **NextJs**. Ela permite realizar operações como depósito, saque, transferência e consulta de saldo. A aplicação é protegida por autenticação.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Este repositório possui o projeto de back-end em: [Bank Api](https://github.com/lcsmelo-0/bank-api).
+
+---
+
+## Como Rodar Localmente
+
+### Pré-requisitos
+
+- Node.js (v18 ou superior)
+- npm (v9 ou superior)
+
+### Passos
+
+1. **Clonar o repositório**:
+
+   ```bash
+   git clone https://github.com/lcsmelo-0/bank-dashboard.git
+   cd bank-dashboard
+   ```
+
+2. **Instalar dependências**:
+
+   ```bash
+   npm install
+   ```
+
+   ou
+
+   ```bash
+   yarn install
+   ```
+
+3. **Configurar variáveis de ambiente**:
+   Crie um arquivo `.env` na raiz do projeto e adicione:
+
+   ```env
+   NEXT_PUBLIC_API_URL=url da api
+   ```
+
+4. **Rodar a aplicação**:
+
+   ```bash
+   npm run dev
+   ```
+
+   ```bash
+   yarn dev
+   ```
+
+5. **Acessar a documentação da API**:
+   Abra o navegador e acesse:
+   ```
+   http://localhost:3001/login
+   ```
+
+---
+
+## Serviços Disponíveis
+
+### Adicionar nova conta
+
+- Adiciona uma nova conta bancária utilizando CPF
+
+### Consultar saldo
+
+- Consulta o saldo da conta bancária selecionada
+
+### Saque
+
+- Realiza o saque da conta selecionada
+
+### Transferência
+
+- Realiza a transferência entre duas contas cadastradas
+
+---
+
+## Estrutura do Projeto
+
+```
+src/
+├── components/
+├── constants/
+├── helpers
+├── hooks
+├── interfaces
+├── libs
+├── pages
+├── store
+└── styles
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Tecnologias Utilizadas
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- **Next.js**: Framework React para construção de interfaces modernas e escaláveis, com recursos como renderização do lado do servidor e geração de sites estáticos.
+- **Redux Toolkit**: Biblioteca para gerenciamento de estado global, simplificando o uso do Redux com menos boilerplate e melhor desempenho.
+- **React Query**: Biblioteca para gerenciamento de dados e cache de requisições, simplificando a interação com APIs e o estado remoto de maneira eficiente.
+- **Styled-components**: Biblioteca para criação de estilos CSS dentro do JavaScript, permitindo o uso de componentes de estilo e aumentando a manutenção e escalabilidade dos estilos.
+- **Autenticação com JWT**: Implementação de autenticação utilizando JSON Web Tokens para garantir a segurança e a integridade das sessões de usuários na aplicação.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" width="50" />
+<img src="https://www.svgrepo.com/show/354113/nextjs-icon.svg" alt="Next.js" width="50" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Redux.png" alt="Redux" width="60" />
+<img src="https://miro.medium.com/v2/resize:fit:400/1*Yt_kxgaoVwFX_lO3lwZPlg.png" alt="React Query" width="60" />
 
-## Learn More
+## Implementações futuras
 
-To learn more about Next.js, take a look at the following resources:
+- **Docker**: Implementação de docker para rodar a aplicação front end em container
+- **Dark Mode**: Implementação de variações de temas.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+---

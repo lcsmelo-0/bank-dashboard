@@ -1,7 +1,6 @@
-import React, { Children, ReactNode, useState } from "react";
+import React, { Children, ReactElement, ReactNode, useState } from "react";
 
 import { TabButton, TabContent, TabList, TabsContainer } from "./styles";
-import { Card } from "../Card";
 
 interface TabProps {
   label: string;
@@ -9,7 +8,7 @@ interface TabProps {
 }
 
 interface TabsProps {
-  children: ReactNode;
+  children: ReactElement<TabProps>[];
 }
 
 export const Tab = ({ children }: TabProps) => <div>{children}</div>;
@@ -21,10 +20,7 @@ export const Tabs = ({ children }: TabsProps) => {
     setActiveTab(index);
   };
 
-  const tabTitles = Children.map(
-    children,
-    (child: React.ReactElement<{ label: string }>) => child.props.label
-  );
+  const tabTitles = Children.map(children, (child) => child.props.label);
 
   return (
     <TabsContainer>
